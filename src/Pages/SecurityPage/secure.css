@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+
+  .input-wrapper {
+    font-weight: 700;
+    height: 2.5rem;
+    border: none;
+    border-radius: 2rem;
+    padding: 0 15px;
+    box-shadow: 0px 0px 8px #000000;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    width: 105%; /* Set the width to your desired value */
+   
+    @media (max-width: 600px) {
+      width: 80%; /* Adjust width for smaller screens if needed */
+    }
+  }
+  
+  input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1.20rem;
+    width: 100%; /* Make the input fill the entire width */
+    margin-left: 10px;
+    font-weight: 700;
+  }
+  
+  input:focus {
+    outline: none;
+    font-weight: 700;
+  }
+  
+  #search-icon {
+    color: grey
+  }
+
+  #head-crm{
+    font-family: "Raleway", sans-serif;
+    font-size: 1.3rem;
+    color:#184d31;
+    font-weight: 700;
+   
+    }
+    #head-crm > h2{
+      font-size: larger;
+      font-weight: 700;
+    }
+
+    .icons-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 4px;
+      align-items: center;
+      gap: 0rem;
+      font-weight: 700;
+    }
+    
+    .hubspot-icons {
+      font-size: 30px;
+      color:#184d31;
+      font-weight: 700;
+    }
+    
+    .icons-container > span {
+      font-size: 30px;
+      color: black;
+      padding-left: 105px;
+      font-weight: 700;
+    }
+    
+    .icons-container > span:hover {
+      cursor: pointer;
+      font-weight: 700;
+    }
+    
+    .icons-container > h3 {
+      color:#184d31;
+      font-weight: 700;
+      font-size: 20px;
+      margin: 0; /* Reset margin to remove default spacing */
+    }
+    .heading-container6{
+        position: absolute;
+        left: 160px;
+        font-weight: 700;
+    }
+    .heading-container2{
+        position: absolute;
+        left: 160px;
+        font-weight: 700;
+    }
+    .heading-container3{
+        position: absolute;
+        left: 160px;
+        font-weight: 700;
+    }
+    .heading-container4{
+        position: absolute;
+        left: 160px;
+        font-weight: 700;
+    }
+    .heading-container5{
+        position: absolute;
+        left: 160px;
+        font-weight: 700;
+    }
+    .heading-container1{
+      font-weight: 700;
+
+        position: absolute;
+        left: 160px;
+    }
+    body {
+      
+      font-family: 'Raleway', sans-serif;
+  }
+  .lets{
+    font-weight: 1000;
+  }
+  .lets1{
+    font-weight: 600;
+  }
+  .lets2{
+    font-weight: 700;
+  }
+  .lets4{
+    font-weight: 500;
+  }
+  .btn {
+    margin-left: -0px;
+    padding: 4px 20px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: #184d31; /* Default background color */
+    color: white; /* Default text color */
+    /* box-shadow: 1px 5px 2px 2px rgb(158, 158, 158); Box shadow when connected */
+  }
+  
+  .btn.connected {
+    margin-left: -10px;
+    font-size: 14px;
+    font-weight: 700;
+    background-color: white; /* Background color when connected */
+    color: #184d31; /* Text color when connected */
+    box-shadow: 1px 5px 2px 2px rgb(158, 158, 158); /* Box shadow when connected */
+  }
+
+  /* a{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  } */
+
+  
