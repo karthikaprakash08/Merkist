@@ -7,7 +7,7 @@ import UserContext from '../Context/UserContext';
 import emailjs from '@emailjs/browser';
 import { child, get, getDatabase, ref, set } from 'firebase/database';
 import app from '../Firebase';
-import { toast } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
@@ -43,6 +43,10 @@ function Login() {
                             isEmailExists = true;
                             generateOTP(email);
                             form.current.classList.remove('sign-up-mode');
+                            showToast('Please check your email for OTP', 'success');
+                            setTimeout(() => {
+                                navigate("../OTP")
+                            }, 2000);
                             break;
                         }
                     }
@@ -72,7 +76,7 @@ function Login() {
             to: email,
             sendername: 'MERKIST',
             subject: 'Login Verification',
-            message: `The OTP is ${OTP}. Please use this OTP to login to your Merkist account. We welcome you.`
+            message: 'The OTP is '+OTP+'. Please use this OTP to login to your Merkist account. We welcome you.'
         }, 'jQGvRQQZ-qG6O7vNY')
             .then((result) => {
                 console.log(result.text);
@@ -97,6 +101,7 @@ function Login() {
             if (snapshot.exists()) {
                 for (let key in snapshot.val()) {
                     if (snapshot.val()[key].email === SignupEmail) {
+                        console.log("signup")
                         showToast('Email Already Exists! Try Login', 'error');
                         setIsValidSignup(false);
                         isEmailExists = true;
@@ -137,6 +142,7 @@ function Login() {
 
     return (
         <div className="container" ref={form}>
+            <ToastContainer></ToastContainer>
             <div className="forms-container">
                 <div className="signin-signup">
                     <form action="#" className="sign-in-form">
@@ -150,11 +156,11 @@ function Login() {
                                 defaultValue={Context.Email}
                                 onChange={(event) => {
                                     setEmail(event.target.value);
-                                    setIsEmpty(event.target.value === '');
+                                    setIsEmpty(event.target.value == '');
                                 }}
                             />
                         </div>
-                        {!isEmpty && (
+                        {isEmpty && (
                             <div className="invalid-feedback" style={{ display: "block", fontWeight: "600", paddingLeft: "160px" }}>
                                 Please enter your email address.
                             </div>

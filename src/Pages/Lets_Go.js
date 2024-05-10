@@ -34,7 +34,7 @@ function Lets_Go() {
                         <div className='lets_go_form d-flex flex-column align-items-center'>
                             <div className='d-flex flex-column align-items-center'>
                                 <div className='lets_go_form_text' style={{textAlign:"center"}}>
-                                    Bringing together tools, resources and innovation in a single interface!
+                                    Bringing together tools,<br/> resources and innovation in a <br/>single interface!
                                 </div>
                             </div>
                             <form className='w-100' style={{padding:"0rem 3rem "}}>
@@ -66,7 +66,7 @@ function Lets_Go() {
                                 <button 
                                     type="submit" 
                                     className="btn btn1" 
-                                    style={{width:"100%"}} 
+                                    style={{width:"100%", padding:"8px 20px", borderRadius:"50px", fontSize:"20px"}} 
                                     onClick={(e) => {
                                         e.preventDefault();
                                         checkemail();
@@ -92,6 +92,9 @@ function Lets_Go() {
                         </div>
                     </div>
                 </div> 
+                {/* <div className='add-img' style={{display:"flex",justifyContent:"flex-end",fontSize:"0px",right:"0px",bottom:"0px",position:"absolute",zIndex:"1"}}>
+                    <img src='/mer-add.png' height="150px" ></img>
+                </div> */}
             </div>
         </div>
     );

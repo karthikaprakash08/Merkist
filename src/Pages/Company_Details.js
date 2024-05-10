@@ -33,7 +33,7 @@ function Company_Details() {
   }, []);
 
   return (
-    <div className='details'>
+    <div className='details' style={{overflow:"hidden",height:"100vh"}}>
       <Nav />
       <div className="maincontainerdetails">
         <div className="detailtexts">
@@ -110,13 +110,13 @@ function Company_Details() {
       <div>
         <div style={{display:"flex", justifyContent:"center"}}>
           <Link to={"/Login"} style={{textDecoration:"none"}}>
-            <button style={{ display: "flex", justifyContent: "center", fontWeight: "400", fontSize: "25px", padding: "6px",backgroundColor: "#184D32",color:"white",textDecoration:"none",borderRadius:"7px", border:"none", alignItems:"center",gap:"10px"}}>
-              Show More <FontAwesomeIcon icon={faAnglesDown}/>
+            <button style={{ display: "flex", justifyContent: "center", fontWeight: "400", fontSize: "25px", padding: "4px 14px",backgroundColor: "#184D32",color:"white",textDecoration:"none",borderRadius:"30px", border:"none", alignItems:"center",gap:"10px"}}>
+              Show More 
             </button>
           </Link>
         </div>
-        <div className='add-img' style={{display:"flex",justifyContent:"flex-end",fontSize:"60px",paddingBottom:"60px"}}>
-            <img src='/mer-add.png'></img>
+        <div className='add-img' style={{display:"flex",justifyContent:"flex-end",fontSize:"0px",right:"0px",bottom:"0px",position:"absolute"}}>
+            <img src='/mer-add.png' height="180px" ></img>
         </div>
     </div>
       
