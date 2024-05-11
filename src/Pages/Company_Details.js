@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Nav from './Nav';
 import { faAnglesDown } from '@fortawesome/free-solid-svg-icons';
 import { FaFacebookSquare, FaInstagramSquare, FaYoutube } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
+import UserContext from '../Context/UserContext';
 
 function Company_Details() {
+  let Context = useContext(UserContext)
   const blocksRef = useRef([]);
 
   useEffect(() => {
@@ -38,10 +40,10 @@ function Company_Details() {
       <div className="maincontainerdetails">
         <div className="detailtexts">
           <div className="leftcontent li-2">Company name</div>
-          <div className="rightcontent li-2">Merkist</div>
+          <div className="rightcontent li-2">{Context.CompanyName}</div>
 
           <div className="leftcontent li-2">Website </div>
-          <div className="rightcontent li-2">merkist.com</div>
+          <div className="rightcontent li-2">{Context.CompanyName}.com</div>
 
           <div className="leftcontent li-2 mbt-01">Page Rank</div>
           <div className="rightcontent li-2 mbt-01">7th on google, 5th on bing</div>

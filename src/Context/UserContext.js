@@ -3,11 +3,12 @@ import { useState } from 'react';
 import { createContext } from 'react'
 import Login from '../Pages/Login';
 
-const UserContext = createContext({Email:"",OTP:"", isLoggedIn:false, LetsGoEmail:undefined, LoginHandler:undefined, LogoutHandler:undefined, SendOTP:undefined});
+const UserContext = createContext({Email:"",OTP:"",CompanyName:"", setCompanyName:undefined, isLoggedIn:false, LetsGoEmail:undefined, LoginHandler:undefined, LogoutHandler:undefined, SendOTP:undefined});
 
 export function UserContextProvider(props) {
 
     let[Email, setEmail] = useState("");
+    let[CompanyName, setCompanyName] = useState("");
     let[OTP, setOTP] = useState("");
     let[isLoggedIn,updateisLoggedIn] = useState(false)
 
@@ -28,7 +29,7 @@ export function UserContextProvider(props) {
     }
 
   return (
-    <UserContext.Provider value={{Email:Email, OTP:OTP, isLoggedIn:isLoggedIn, LetsGoEmail:LetsGoEmail, LoginHandler:LoginHandler, LogoutHandler:LogoutHandler, SendOTP:SendOTP}}>
+    <UserContext.Provider value={{Email:Email, OTP:OTP,CompanyName:CompanyName, setCompanyName:setCompanyName, isLoggedIn:isLoggedIn, LetsGoEmail:LetsGoEmail, LoginHandler:LoginHandler, LogoutHandler:LogoutHandler, SendOTP:SendOTP}}>
         {props.children}
     </UserContext.Provider>
   )

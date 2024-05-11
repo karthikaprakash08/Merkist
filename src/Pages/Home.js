@@ -10,7 +10,6 @@ import {
 import { FaFacebookSquare, FaInstagramSquare, FaYoutube } from "react-icons/fa";
 import { BsTwitterX } from "react-icons/bs";
 
-
 function Home() {
   const Context = useContext(UserContext);
   const [color, setColor] = useState("yellow");
@@ -19,6 +18,22 @@ function Home() {
   const [hide, setHide] = useState(false);
   const [newshide, setNewshide] = useState(true);
   const [staticProgressBar, setStaticProgressBar] = useState(false);
+
+  let [colorpalet, setcolorpalet] = useState([
+    {
+      "color" : "green",
+      "percent" :50
+    },
+    {
+      "color" : "red",
+      "percent" :70
+    },
+    {
+      "color" : "blue",
+      "percent" :20
+    }
+  ])
+  
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -119,7 +134,8 @@ function Home() {
             )}
             
             </>
-            
+          
+        
         <div className="leftcontent mb">News</div>
         <div className="rightcontent flex mb">
           <div
@@ -160,7 +176,70 @@ function Home() {
           >
             Merking
           </h1>
-          <div className="firstpalete">
+
+          {colorpalet.map((color)=>{
+            let op1 = color.percent>0 ? "1" : "0"
+            let op2 = color.percent>10 ? "1" : "0"
+            let op3 = color.percent>20 ? "1" : "0"
+            let op4 = color.percent>30 ? "1" :"0"
+            let op5 = color.percent>40 ? "1" : "0"
+            let op6 = color.percent>50 ? "1" : "0"
+            let op7 = color.percent>60 ? "1" : "0"
+            let op8 = color.percent>70 ? "1" : "0"
+            let op9 = color.percent>80 ? "1" : "0"
+            let op10 = color.percent>90 ? "1" : "0"
+
+            return(<div className="firstpalete">
+            <div
+              className="firstrounded animations delay-03"
+              style={{ backgroundColor: color.color, opacity:op1}}
+            ></div>
+            <div
+              className="firstmiddle animations delay-03"
+              style={{ backgroundColor: color.color, opacity:op2}}
+            ></div>
+            <div
+              className="firstmiddle animations delay-03"
+              style={{ backgroundColor: color.color, opacity:op3}}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-02"
+              style={{ backgroundColor: color.color, opacity:op4 }}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-02"
+              style={{ backgroundColor: color.color, opacity:op5 }}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-02"
+              style={{ backgroundColor: color.color, opacity:op6 }}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-01"
+              style={{ backgroundColor: color.color, opacity:op7 }}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-01"
+              style={{ backgroundColor: color.color, opacity:op8 }}
+            ></div>
+            <div
+              className="firstmiddle  animations delay-01"
+              style={{ backgroundColor: color.color, opacity:op9 }}
+            ></div>
+            <div
+              className="firstrounded  animations delay-01"
+              style={{ backgroundColor: color.color, opacity:op10 }}
+            ></div>
+            <span className="percentagecolor ">
+              {" "}
+              <span className="animations delaynumbers-01 ft-1">{color.percent}%</span>
+              {/* <span className="animations delaynumbers-02 ft-1">0</span>
+              <span className="animations delaysymbol-01 ft-1">%</span> */}
+            </span>
+          </div>)
+          })}
+          
+          {/* <div className="firstpalete">
             <div
               className="firstrounded animations delay-03"
               style={{ backgroundColor: color }}
@@ -208,6 +287,8 @@ function Home() {
               <span className="animations delaysymbol-01 ft-1">%</span>
             </span>
           </div>
+
+          
 
           <div className="secondpalete">
             <div
@@ -303,7 +384,7 @@ function Home() {
               <span className="animations delaynumbers-02 ft-1">0</span>
               <span className="animations delaysymbol-01 ft-1">%</span>
             </span>
-          </div>
+          </div> */}
           <div className="nextbtn">
             <Link to='/Letsconnect'>
             <a href="#" className="btnnext">

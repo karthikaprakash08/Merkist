@@ -34,7 +34,7 @@ function Login() {
 
     useEffect(()=>{
         if(Context.Email!=""){
-            setIsEmpty(false)
+            // setIsEmpty(false)
             if(email==""){
                 setEmail(Context.Email)
             }
@@ -43,13 +43,19 @@ function Login() {
                 setSignupEmail(Context.Email)
             }
         }
+        if(Context.CompanyName!=""){
+            setIsEmpty(false)
+            if(CompanyName==""){
+                setCompanyName(Context.CompanyName)
+            }
+        }
 
         
     },[])
 
     function checkEmailExists() {
         const emailRegex =  /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-        if (email !== ''&& emailRegex.test(email) && !email.includes("@gmail.com")) {
+        if (email !== ''&& emailRegex.test(email)) {
             const dbRef = ref(getDatabase(app));
             get(child(dbRef, 'users')).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -107,7 +113,7 @@ function Login() {
         const emailRegex =  /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const phoneRegex = /^[6-9][0-9]{9}$/;
 
-        if ( (!emailRegex.test(SignupEmail) && SignupEmail.includes("@gmail.com")) || !nameRegex.test(CompanyName) || !phoneRegex.test(Phone) || SignupEmail === '' || CompanyName === '' || Phone === '') {
+        if ( !emailRegex.test(SignupEmail) || !nameRegex.test(CompanyName) || !phoneRegex.test(Phone) || SignupEmail === '' || CompanyName === '' || Phone === '') {
             showToast('Please enter valid details for signup.', 'error');
             return;
         }
@@ -173,11 +179,11 @@ function Login() {
                                 defaultValue={Context.Email}
                                 onChange={(event) => {
                                     setEmail(event.target.value);
-                                    setIsEmpty(event.target.value == '');
+                                    setIsEmpty(!event.target.value == '');
                                 }}
                             />
                         </div>
-                        {isEmpty && (
+                        {!isEmpty && (
                             <div className="invalid-feedback" style={{ display: "block", fontWeight: "600", paddingLeft: "160px" }}>
                                 Please enter your email address.
                             </div>
@@ -199,6 +205,7 @@ function Login() {
                             <FontAwesomeIcon icon={faUser} className='i' />
                             <input
                                 type="text"
+                                defaultValue={Context.CompanyName}
                                 placeholder="Company Name"
                                 onChange={(event) => {
                                     setCompanyName(event.target.value);
@@ -222,13 +229,12 @@ function Login() {
                             <input
                                 type="email"
                                 placeholder="Email"
-                                defaultValue={Context.Email}
                                 onChange={(event) => {
                                     setSignupEmail(event.target.value);
                                     setIsSignupEmail(event.target.value !== '');
                                     let validemail = /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(event.target.value)
                                     console.log(validemail)
-                                    setIsSignupValidEmail(validemail && !event.target.value.includes("@gmail.com"))
+                                    setIsSignupValidEmail(validemail)
                                 }}
                             />
                         </div>

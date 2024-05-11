@@ -6,16 +6,17 @@ import UserContext from '../Context/UserContext';
 
 function Lets_Go() {
     const [email, setEmail] = useState('');
+    const [CompanyName, setCompanyName] = useState('');
     const [isValid, setIsValid] = useState(true);
     const navigate = useNavigate();
     const Context = useContext(UserContext);
 
     function checkemail() {
         // Updated regular expression to accept email addresses like "karthiks.p@company.com"
-        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (emailRegex.test(email) && !email.includes("@gmail.com")) {
+        if (CompanyName!="") {
             setIsValid(true);
             Context.LetsGoEmail(email);
+            Context.setCompanyName(CompanyName);
             navigate('/Details');
         } else {
             setIsValid(false);
@@ -44,13 +45,13 @@ function Lets_Go() {
                                         style={{color:"#0f5132", fontWeight:"600", height:"45px"}} 
                                         className={`form-control email-input ${isValid ? "" : "is-invalid"}`} 
                                         id="floatingInput" 
-                                        placeholder="Enter Work Email" 
-                                        value={email}
+                                        placeholder="Enter Company Name" 
+                                        value={CompanyName}
                                         onChange={(event) => {
-                                            setEmail(event.target.value);
+                                            setCompanyName(event.target.value)
                                             // Validate email format as it's being typed
                                             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                                            if (emailRegex.test(event.target.value) && !event.target.value.includes("@gmail.com")) {
+                                            if (event.target.value!="") {
                                                 setIsValid(true);
                                             } else {
                                                 setIsValid(false);
@@ -59,7 +60,7 @@ function Lets_Go() {
                                     />
                                     {!isValid && (
                                         <div className="invalid-feedback">
-                                            Please enter a valid email address.
+                                            Please enter your company name.
                                         </div>
                                     )}
                                 </div>
