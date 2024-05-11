@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import './Login.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,8 +32,24 @@ function Login() {
         toast[type](message);
     };
 
+    useEffect(()=>{
+        if(Context.Email!=""){
+            setIsEmpty(false)
+            if(email==""){
+                setEmail(Context.Email)
+            }
+
+            if(SignupEmail==""){
+                setSignupEmail(Context.Email)
+            }
+        }
+
+        
+    },[])
+
     function checkEmailExists() {
-        if (email !== '') {
+        const emailRegex =  /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        if (email !== ''&& emailRegex.test(email) && !email.includes("@gmail.com")) {
             const dbRef = ref(getDatabase(app));
             get(child(dbRef, 'users')).then((snapshot) => {
                 if (snapshot.exists()) {
@@ -61,6 +77,7 @@ function Login() {
             });
         } else {
             setIsEmpty(false);
+            showToast('Check Email', 'error');
         }
     }
 
@@ -86,11 +103,11 @@ function Login() {
     }
 
     function signupUser() {
-        const nameRegex = /^[a-zA-Z]+$/;
-        const emailRegex = /^[a-zA-Z]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+        const nameRegex = /^[a-zA-Z ]+$/;
+        const emailRegex =  /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
         const phoneRegex = /^[6-9][0-9]{9}$/;
 
-        if (!emailRegex.test(SignupEmail) || !nameRegex.test(CompanyName) || !phoneRegex.test(Phone) || SignupEmail === '' || CompanyName === '' || Phone === '') {
+        if ( (!emailRegex.test(SignupEmail) && SignupEmail.includes("@gmail.com")) || !nameRegex.test(CompanyName) || !phoneRegex.test(Phone) || SignupEmail === '' || CompanyName === '' || Phone === '') {
             showToast('Please enter valid details for signup.', 'error');
             return;
         }
@@ -186,7 +203,7 @@ function Login() {
                                 onChange={(event) => {
                                     setCompanyName(event.target.value);
                                     setIsSignupCompanyName(event.target.value !== '');
-                                    setIsSignupValidCompanyName(/^[a-zA-Z]+$/.test(event.target.value));
+                                    setIsSignupValidCompanyName(/^[a-zA-Z ]+$/.test(event.target.value));
                                 }}
                             />
                         </div>
@@ -209,7 +226,9 @@ function Login() {
                                 onChange={(event) => {
                                     setSignupEmail(event.target.value);
                                     setIsSignupEmail(event.target.value !== '');
-                                    setIsSignupValidEmail(/^[a-zA-Z]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(event.target.value));
+                                    let validemail = /^[a-zA-Z]+[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(event.target.value)
+                                    console.log(validemail)
+                                    setIsSignupValidEmail(validemail && !event.target.value.includes("@gmail.com"))
                                 }}
                             />
                         </div>

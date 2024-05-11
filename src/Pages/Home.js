@@ -119,8 +119,7 @@ function Home() {
             )}
             
             </>
-          
-        
+            
         <div className="leftcontent mb">News</div>
         <div className="rightcontent flex mb">
           <div

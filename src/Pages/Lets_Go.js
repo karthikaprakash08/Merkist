@@ -13,7 +13,7 @@ function Lets_Go() {
     function checkemail() {
         // Updated regular expression to accept email addresses like "karthiks.p@company.com"
         const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        if (emailRegex.test(email)) {
+        if (emailRegex.test(email) && !email.includes("@gmail.com")) {
             setIsValid(true);
             Context.LetsGoEmail(email);
             navigate('/Details');
@@ -30,7 +30,7 @@ function Lets_Go() {
             <div className='lets_go_container d-flex justify-content-center align-items-center'>
                 <div className='content-container'>
                     <div className='lets_go_img d-flex flex-column bg-white'>
-                        <img src="/lets_go.png" className='lets_go_image img-fluid object-fit-contain' alt="Let's Go Image" />
+                        <img src="/main-img.jpg" className='lets_go_image img-fluid object-fit-cover' alt="Let's Go Image" />
                         <div className='lets_go_form d-flex flex-column align-items-center'>
                             <div className='d-flex flex-column align-items-center'>
                                 <div className='lets_go_form_text' style={{textAlign:"center"}}>
@@ -50,7 +50,7 @@ function Lets_Go() {
                                             setEmail(event.target.value);
                                             // Validate email format as it's being typed
                                             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-                                            if (emailRegex.test(event.target.value)) {
+                                            if (emailRegex.test(event.target.value) && !event.target.value.includes("@gmail.com")) {
                                                 setIsValid(true);
                                             } else {
                                                 setIsValid(false);
